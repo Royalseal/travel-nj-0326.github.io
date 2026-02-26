@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南京行程安排</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #38a169;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color: #2d3748;
+            padding-top: 60px;
+        }
+
+        .container {
+            max-width: 1100px;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 1.2em;
+            background-color: var(--accent-color);
+            border-radius: 999px;
+        }
+
+        .route-info {
+            font-size: 0.95rem;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+
+        .map-link {
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .map-link:hover {
+            transform: translateX(3px);
+        }
+
+        .map-link::after {
+            content: '🗺️';
+            font-size: 0.8rem;
+        }
+
+        .day-section {
+            scroll-margin-top: 60px;
+        }
+        
+        .day-title {
+            position: sticky;
+            top: 60px;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .day-title {
+                font-size: 1.2rem;
+                padding: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-5 fw-bold" style="color: var(--primary-color);">南 京 行 程 安 排</h1>
+        
+        <div class="day-section" id="day1">
+            <h2 class="day-title text-center py-3 mb-4 rounded">📅 2026年3月4日 - 第一天行程安排</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5 class="section-title">🚄 【高铁】</h5>
+                    <p class="route-info">车次：G565 (北京南 -> 南京南)</p>
+                    <p class="route-info">行程时间：07:07 - 11:55</p>
+                    <p class="route-info">座位号：05车 09D、05车09F</p>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="section-title">🚇 【市区交通 / 地铁】</h5>
+                    <p class="route-info">路线：【南京南站（4口）】，乘坐地铁【3号线】（往林场方向），【8站】在【大行宫站（3口）】出。</p>
+                    <p class="route-info">车程：约35分钟。</p>
+                    <p class="route-info">路线：步行出【大行宫站（3口）】沿【中山东路】向东步行700米。</p>
+                    <a href="https://j.map.baidu.com/a6/2naM" class="map-link">查看地图</a>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="section-title">🏨 【酒店】</h5>
+                    <p class="route-info">汉庭优佳酒店（南京新街口总统府店）</p>
+                    <p class="route-info">地址：南京市秦淮区中山东路416号</p>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="section-title">🍽️ 【美食 - 午餐】</h5>
+                    <p class="route-info">刘长兴（逸仙桥店）</p>
+                    <p class="route-info">路线：步行沿酒店门口【中山东路】向东250米，过二条巷即达。</p>
+                    <a href="https://j.map.baidu.com/69/dgaM" class="map-link">查看地图</a>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="section-title">🌳 【景点1 - 明孝陵、中山陵景区】</h5>
+                    <p class="route-info">刘长兴（逸仙桥店）打车至明孝陵景区1号门，约15-18元</p>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="section-title">🏯 【景点2 - 夫子庙】</h5>
+                    <p class="route-info">打车约22-25元</p>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="section-title">🍜 【美食 - 晚餐】</h5>
+                    <p class="route-info">金陵家宴·金陵春·南京菜（夫子庙店）</p>
+                    <p class="route-info">地址：秦淮区大坝街79号</p>
+                    <a href="https://j.map.baidu.com/a7/ZyaM" class="map-link">查看地图</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="day-section mt-5" id="day2">
+            <h2 class="day-title text-center py-3 mb-4 rounded">📅 2026年3月5日 - 第二天行程安排</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5 class="section-title">🚄 【高铁】</h5>
+                    <p class="route-info">车次：高铁 G1427 (南京南 -> 长沙南)</p>
+                    <p class="route-info">行程时间：12:30 - 16:44</p>
+                    <p class="route-info">座位号：13车09D、13车09F</p>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="section-title">🚇 【市区交通 / 地铁】</h5>
+                    <p class="route-info">路线：【大行宫站（3口）】，乘坐地铁【3号线】（往秣陵方向），【8站】在【南京南站（4口）】出。</p>
+                    <p class="route-info">车程：约35分钟。</p>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="section-title">🏰 【景点 - 总统府】</h5>
+                    <p class="route-info">路线：步行沿酒店门口【中山东路】向西步行30米，右转过马路至【长江东街】向北走160米至【长江路】左转走80米即达。</p>
+                    <a href="https://j.map.baidu.com/62/l_Yk" class="map-link">查看地图</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
