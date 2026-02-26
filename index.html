@@ -71,14 +71,14 @@
         }
         
         .day-title {
-            position: sticky;
-            top: 60px;
+            position: relative;
             z-index: 10;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             font-size: 1.5rem;
             background-color: var(--primary-color);
             color: white;
             padding: 1rem 0;
+            margin-bottom: 1rem;
         }
         
         @media (max-width: 768px) {
@@ -96,10 +96,8 @@
 <body>
     <div class="container">
         <h1 class="text-center mb-5 fw-bold" style="color: var(--primary-color);">南 京 行 程 安 排</h1>
-        
         <div class="day-section" id="day1">
             <h2 class="day-title text-center py-3 mb-4 rounded">📅 2026年3月4日 - 第一天行程安排</h2>
-            
             <div class="row g-4">
                 <div class="col-md-6">
                     <h5 class="section-title">🚄 【高铁】</h5>
@@ -127,11 +125,17 @@
                 </div>
                 <div class="col-md-6">
                     <h5 class="section-title">🌳 【景点1 - 明孝陵、中山陵景区】</h5>
-                    <p class="route-info">刘长兴（逸仙桥店）打车至明孝陵景区1号门，约15-18元</p>
+                    <p class="route-info">地址：南京市玄武区植物园路明孝陵景区</p>
+                    <p class="route-info">导航：明孝陵景区1号门</p>
+                    <p class="route-info">路线：刘长兴（逸仙桥店）打车至明孝陵景区1号门，约15-18元</p>
+                    <a href="https://j.map.baidu.com/3b/jD4J" class="map-link">查看地图</a>
                 </div>
                 <div class="col-md-6">
                     <h5 class="section-title">🏯 【景点2 - 夫子庙】</h5>
-                    <p class="route-info">打车约22-25元</p>
+                    <p class="route-info">地址：南京市秦淮区贡院西街与贡院街交叉口</p>
+                    <p class="route-info">导航：古秦淮西牌坊</p>
+                    <p class="route-info">路线：明孝陵景区1号门打车至古秦淮西牌坊，打车约22-25元</p>
+                    <a href="https://j.map.baidu.com/bf/8bxJ" class="map-link">查看地图</a>
                 </div>
                 <div class="col-md-6">
                     <h5 class="section-title">🍜 【美食 - 晚餐】</h5>
@@ -144,7 +148,6 @@
 
         <div class="day-section mt-5" id="day2">
             <h2 class="day-title text-center py-3 mb-4 rounded">📅 2026年3月5日 - 第二天行程安排</h2>
-            
             <div class="row g-4">
                 <div class="col-md-6">
                     <h5 class="section-title">🚄 【高铁】</h5>
@@ -159,6 +162,7 @@
                 </div>
                 <div class="col-md-6">
                     <h5 class="section-title">🏰 【景点 - 总统府】</h5>
+                    <p class="route-info">地址：南京市玄武区长江路292号</p>
                     <p class="route-info">路线：步行沿酒店门口【中山东路】向西步行30米，右转过马路至【长江东街】向北走160米至【长江路】左转走80米即达。</p>
                     <a href="https://j.map.baidu.com/62/l_Yk" class="map-link">查看地图</a>
                 </div>
