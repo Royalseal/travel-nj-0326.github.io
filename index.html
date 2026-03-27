@@ -3,173 +3,694 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>南京行程安排</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>南京之旅 | 2日深度游</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #1a365d;
-            --secondary-color: #2c5282;
-            --accent-color: #38a169;
+            --color-bg: #FAF8F5;
+            --color-bg-card: #FFFFFF;
+            --color-text: #2C2C2C;
+            --color-text-light: #6B6B6B;
+            --color-accent: #C45A3B;
+            --color-accent-light: #E8D5CE;
+            --color-sage: #7A8B6E;
+            --color-sage-light: #E8EDE5;
+            --color-gold: #B8956E;
+            --color-gold-light: #F5EFE5;
+            --color-ocean: #4A7C8C;
+            --color-ocean-light: #E3EEF2;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f5f5f5;
-            color: #2d3748;
-            padding-top: 60px;
+            font-family: 'Noto Sans SC', -apple-system, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(ellipse at 20% 0%, rgba(196,90,59,0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(122,139,110,0.05) 0%, transparent 50%);
         }
 
-        .container {
-            max-width: 1100px;
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            font-size: 1.25rem;
-            font-weight: 500;
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 50vh;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 24px;
+            overflow: hidden;
         }
 
-        .section-title::before {
+        .hero::before {
             content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #FAF8F5 0%, #F0EBE5 100%);
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(196,90,59,0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.1s;
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .hero h1 span {
+            color: var(--color-accent);
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--color-text-light);
+            font-weight: 300;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.4s;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--color-text-light);
+        }
+
+        .meta-item svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--color-accent);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        /* Day Card */
+        .day-card {
+            position: relative;
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 32px;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition);
+        }
+
+        .day-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .day-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .day-header {
+            padding: 28px 32px;
+            background: linear-gradient(135deg, var(--color-bg-card) 0%, #FEFDFB 100%);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .day-card:hover .day-header {
+            background: linear-gradient(135deg, #FFFEF9 0%, #FEFDFB 100%);
+        }
+
+        .day-number {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+
+        .day-number .num {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-accent);
+            letter-spacing: 1px;
+        }
+
+        .day-number h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(20px, 3vw, 26px);
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .day-toggle {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .day-toggle svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--color-text-light);
+            transition: var(--transition);
+        }
+
+        .day-card.open .day-toggle {
+            background: var(--color-accent);
+        }
+
+        .day-card.open .day-toggle svg {
+            stroke: white;
+            transform: rotate(180deg);
+        }
+
+        .day-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .day-card.open .day-content {
+            max-height: 2000px;
+        }
+
+        .day-body {
+            padding: 32px;
+        }
+
+        /* Info Blocks */
+        .info-block {
+            margin-bottom: 24px;
+            padding: 20px 24px;
+            border-radius: var(--radius-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-block::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
             width: 4px;
-            height: 1.2em;
-            background-color: var(--accent-color);
-            border-radius: 999px;
+            border-radius: 4px 0 0 4px;
         }
 
-        .route-info {
-            font-size: 0.95rem;
-            color: #4a5568;
-            margin-bottom: 0.5rem;
-        }
+        .info-block.train { background: var(--color-gold-light); }
+        .info-block.train::before { background: var(--color-gold); }
 
-        .map-link {
-            font-size: 0.9rem;
+        .info-block.transport { background: var(--color-sage-light); }
+        .info-block.transport::before { background: var(--color-sage); }
+
+        .info-block.hotel { background: #F5F0EB; }
+        .info-block.hotel::before { background: #8B7355; }
+
+        .info-block.food { background: #FEF0E8; }
+        .info-block.food::before { background: #D4573B; }
+
+        .info-block.attraction { background: var(--color-accent-light); }
+        .info-block.attraction::before { background: var(--color-accent); }
+
+        .info-label {
             display: inline-flex;
             align-items: center;
-            gap: 0.3rem;
-            color: var(--accent-color);
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: var(--color-text-light);
+        }
+
+        .info-label svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .info-block.train .info-label svg { stroke: var(--color-gold); }
+        .info-block.transport .info-label svg { stroke: var(--color-sage); }
+        .info-block.hotel .info-label svg { stroke: #8B7355; }
+        .info-block.food .info-label svg { stroke: #D4573B; }
+        .info-block.attraction .info-label svg { stroke: var(--color-accent); }
+
+        .info-content {
+            font-size: 15px;
+            color: var(--color-text);
+        }
+
+        .info-content p {
+            margin-bottom: 8px;
+        }
+
+        .info-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-content a {
+            color: var(--color-accent);
             text-decoration: none;
-            transition: all 0.2s ease;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
         }
 
-        .map-link:hover {
-            transform: translateX(3px);
+        .info-content a:hover {
+            border-bottom-color: var(--color-accent);
         }
 
-        .map-link::after {
-            content: '🗺️';
-            font-size: 0.8rem;
+        .info-content strong {
+            font-weight: 600;
         }
 
-        .day-section {
-            scroll-margin-top: 60px;
+        .info-content .time {
+            font-weight: 500;
+            color: var(--color-accent);
         }
-        
-        .day-title {
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            font-size: 1.5rem;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 0;
-            margin-bottom: 1rem;
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);
+            margin: 24px 0;
         }
-        
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .day-title {
-                font-size: 1.2rem;
-                padding: 1rem;
+            .hero {
+                min-height: 40vh;
+                padding: 60px 20px;
             }
-            
-            .section-title {
-                font-size: 1.1rem;
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 16px;
             }
+
+            .day-header {
+                padding: 20px;
+            }
+
+            .day-body {
+                padding: 20px;
+            }
+
+            .info-block {
+                padding: 16px 18px;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--color-text-light);
+            font-size: 14px;
+        }
+
+        .footer svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--color-accent);
+            margin-bottom: 8px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center mb-5 fw-bold" style="color: var(--primary-color);">南 京 行 程 安 排</h1>
-        <div class="day-section" id="day1">
-            <h2 class="day-title text-center py-3 mb-4 rounded">📅 2026年3月4日 - 第一天行程安排</h2>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <h5 class="section-title">🚄 【高铁】</h5>
-                    <p class="route-info">车次：G565 (北京南 -> 南京南)</p>
-                    <p class="route-info">行程时间：07:07 - 11:55</p>
-                    <p class="route-info">座位号：05车 09D、05车09F</p>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">Travel Itinerary</span>
+            <h1>南京 · 古都探索</h1>
+            <p class="hero-subtitle">2日深度之旅 | 2026年3月</p>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>3月4日 - 3月5日</span>
                 </div>
-                <div class="col-md-6">
-                    <h5 class="section-title">🚇 【市区交通 / 地铁】</h5>
-                    <p class="route-info">路线：【南京南站（4口）】，乘坐地铁【3号线】（往林场方向），【8站】在【大行宫站（3口）】出。</p>
-                    <p class="route-info">车程：约35分钟。</p>
-                    <p class="route-info">路线：步行出【大行宫站（3口）】沿【中山东路】向东步行700米。</p>
-                    <a href="https://j.map.baidu.com/a6/2naM" class="map-link">查看地图</a>
-                </div>
-                <div class="col-md-6">
-                    <h5 class="section-title">🏨 【酒店】</h5>
-                    <p class="route-info">汉庭优佳酒店（南京新街口总统府店）</p>
-                    <p class="route-info">地址：南京市秦淮区中山东路416号</p>
-                </div>
-                <div class="col-md-6">
-                    <h5 class="section-title">🍽️ 【美食 - 午餐】</h5>
-                    <p class="route-info">刘长兴（逸仙桥店）</p>
-                    <p class="route-info">路线：步行沿酒店门口【中山东路】向东250米，过二条巷即达。</p>
-                    <a href="https://j.map.baidu.com/69/dgaM" class="map-link">查看地图</a>
-                </div>
-                <div class="col-md-6">
-                    <h5 class="section-title">🌳 【景点1 - 明孝陵、中山陵景区】</h5>
-                    <p class="route-info">地址：南京市玄武区植物园路明孝陵景区</p>
-                    <p class="route-info">导航：明孝陵景区1号门</p>
-                    <p class="route-info">路线：刘长兴（逸仙桥店）打车至明孝陵景区1号门，约15-18元</p>
-                    <a href="https://j.map.baidu.com/3b/jD4J" class="map-link">查看地图</a>
-                </div>
-                <div class="col-md-6">
-                    <h5 class="section-title">🏯 【景点2 - 夫子庙】</h5>
-                    <p class="route-info">地址：南京市秦淮区贡院西街与贡院街交叉口</p>
-                    <p class="route-info">导航：古秦淮西牌坊</p>
-                    <p class="route-info">路线：明孝陵景区1号门打车至古秦淮西牌坊，打车约22-25元</p>
-                    <a href="https://j.map.baidu.com/bf/8bxJ" class="map-link">查看地图</a>
-                </div>
-                <div class="col-md-6">
-                    <h5 class="section-title">🍜 【美食 - 晚餐】</h5>
-                    <p class="route-info">金陵家宴·金陵春·南京菜（夫子庙店）</p>
-                    <p class="route-info">地址：秦淮区大坝街79号</p>
-                    <a href="https://j.map.baidu.com/a7/ZyaM" class="map-link">查看地图</a>
+                <div class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span>2人同行</span>
                 </div>
             </div>
         </div>
+    </header>
 
-        <div class="day-section mt-5" id="day2">
-            <h2 class="day-title text-center py-3 mb-4 rounded">📅 2026年3月5日 - 第二天行程安排</h2>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <h5 class="section-title">🚄 【高铁】</h5>
-                    <p class="route-info">车次：高铁 G1427 (南京南 -> 长沙南)</p>
-                    <p class="route-info">行程时间：12:30 - 16:44</p>
-                    <p class="route-info">座位号：13车09D、13车09F</p>
+    <!-- Main Content -->
+    <main class="container">
+
+        <!-- Day 1 -->
+        <article class="day-card" data-day="1">
+            <div class="day-header">
+                <div class="day-number">
+                    <span class="num">DAY 01</span>
+                    <h2>北京 → 南京</h2>
                 </div>
-                <div class="col-md-6">
-                    <h5 class="section-title">🚇 【市区交通 / 地铁】</h5>
-                    <p class="route-info">路线：【大行宫站（3口）】，乘坐地铁【3号线】（往秣陵方向），【8站】在【南京南站（4口）】出。</p>
-                    <p class="route-info">车程：约35分钟。</p>
-                </div>
-                <div class="col-md-6">
-                    <h5 class="section-title">🏰 【景点 - 总统府】</h5>
-                    <p class="route-info">地址：南京市玄武区长江路292号</p>
-                    <p class="route-info">路线：步行沿酒店门口【中山东路】向西步行30米，右转过马路至【长江东街】向北走160米至【长江路】左转走80米即达。</p>
-                    <a href="https://j.map.baidu.com/62/l_Yk" class="map-link">查看地图</a>
+                <div class="day-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="day-content">
+                <div class="day-body">
+                    <div class="info-block train">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="4" y="3" width="16" height="16" rx="2"></rect>
+                                <path d="M4 11h16"></path>
+                                <path d="M12 3v8"></path>
+                                <path d="M8 19h8"></path>
+                            </svg>
+                            高铁
+                        </span>
+                        <div class="info-content">
+                            <p><span class="time">07:07 - 11:55</span> · 北京南 → 南京南</p>
+                            <p>车次 G565 · 车程 4小时48分</p>
+                            <p>座位 05车09D, 05车09F</p>
+                        </div>
+                    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+                    <div class="info-block transport">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                            </svg>
+                            市区交通
+                        </span>
+                        <div class="info-content">
+                            <p>地铁3号线：南京南站（4口）→ 大行宫站（3口）</p>
+                            <p>8站 · 约35分钟</p>
+                            <p>出站后沿中山东路向东步行700米</p>
+                            <p><a href="https://j.map.baidu.com/a6/2naM" target="_blank">查看地图</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-block hotel">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 21h18"></path>
+                                <path d="M19 21v-4"></path>
+                                <path d="M19 17a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2"></path>
+                                <path d="M5 21v-4"></path>
+                                <path d="M9 7h6"></path>
+                                <path d="M9 11h6"></path>
+                            </svg>
+                            酒店
+                        </span>
+                        <div class="info-content">
+                            <p><strong>汉庭优佳酒店（南京新街口总统府店）</strong></p>
+                            <p>南京市秦淮区中山东路416号</p>
+                        </div>
+                    </div>
+
+                    <div class="info-block food">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                                <line x1="6" y1="1" x2="6" y2="4"></line>
+                                <line x1="10" y1="1" x2="10" y2="4"></line>
+                                <line x1="14" y1="1" x2="14" y2="4"></line>
+                            </svg>
+                            午餐
+                        </span>
+                        <div class="info-content">
+                            <p><strong>刘长兴（逸仙桥店）</strong></p>
+                            <p>酒店门口中山东路向东250米，过二条巷即达</p>
+                            <p><a href="https://j.map.baidu.com/69/dgaM" target="_blank">查看地图</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-block attraction">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            下午游玩
+                        </span>
+                        <div class="info-content">
+                            <p><strong>明孝陵、中山陵景区</strong></p>
+                            <p>地址：南京市玄武区植物园路明孝陵景区</p>
+                            <p>导航：明孝陵景区1号门</p>
+                            <p>刘长兴打车至明孝陵景区1号门，约15-18元</p>
+                            <p><a href="https://j.map.baidu.com/3b/jD4J" target="_blank">查看地图</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-block attraction">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            </svg>
+                            傍晚游玩
+                        </span>
+                        <div class="info-content">
+                            <p><strong>夫子庙</strong></p>
+                            <p>地址：南京市秦淮区贡院西街与贡院街交叉口</p>
+                            <p>导航：古秦淮西牌坊</p>
+                            <p>明孝陵景区1号门打车至古秦淮西牌坊，约22-25元</p>
+                            <p><a href="https://j.map.baidu.com/bf/8bxJ" target="_blank">查看地图</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-block food">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            </svg>
+                            晚餐
+                        </span>
+                        <div class="info-content">
+                            <p><strong>金陵家宴·金陵春·南京菜（夫子庙店）</strong></p>
+                            <p>地址：秦淮区大坝街79号</p>
+                            <p><a href="https://j.map.baidu.com/a7/ZyaM" target="_blank">查看地图</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Day 2 -->
+        <article class="day-card" data-day="2">
+            <div class="day-header">
+                <div class="day-number">
+                    <span class="num">DAY 02</span>
+                    <h2>南京 → 长沙</h2>
+                </div>
+                <div class="day-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+            <div class="day-content">
+                <div class="day-body">
+                    <div class="info-block attraction">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            </svg>
+                            上午游玩
+                        </span>
+                        <div class="info-content">
+                            <p><strong>总统府</strong></p>
+                            <p>地址：南京市玄武区长江路292号</p>
+                            <p>路线：酒店门口中山东路向西30米，右转过马路至长江东街向北走160米，至长江路左转80米即达</p>
+                            <p><a href="https://j.map.baidu.com/62/l_Yk" target="_blank">查看地图</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-block transport">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                            </svg>
+                            前往南京南站
+                        </span>
+                        <div class="info-content">
+                            <p>地铁3号线：大行宫站（3口）→ 南京南站（4口）</p>
+                            <p>8站 · 约35分钟</p>
+                        </div>
+                    </div>
+
+                    <div class="info-block train">
+                        <span class="info-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="4" y="3" width="16" height="16" rx="2"></rect>
+                                <path d="M4 11h16"></path>
+                                <path d="M12 3v8"></path>
+                            </svg>
+                            高铁返程
+                        </span>
+                        <div class="info-content">
+                            <p><span class="time">12:30 - 16:44</span> · 南京南 → 长沙南</p>
+                            <p>车次 G1427 · 车程 4小时14分</p>
+                            <p>座位 13车09D, 13车09F</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <p>祝旅途愉快 · 一路平安</p>
+    </footer>
+
+    <script>
+        // Card expand/collapse - 手风琴效果
+        document.querySelectorAll('.day-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const card = header.closest('.day-card');
+                const isOpen = card.classList.contains('open');
+
+                // 关闭所有其他卡片
+                document.querySelectorAll('.day-card').forEach(c => {
+                    c.classList.remove('open');
+                });
+
+                // 如果之前是关闭的，现在打开
+                if (!isOpen) {
+                    card.classList.add('open');
+                }
+            });
+        });
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.day-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
